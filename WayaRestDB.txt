@@ -1,0 +1,78 @@
+create DATABSE wayaRestDB;
+use wayaRestDB;
+
+create table admin(
+	adm_id INT auto_increment primary key,
+	username VARCHAR(50) unique,
+	password VARCHAR(255),
+	email VARCHAR(100) not null unique,
+	code VARCHAR(50),
+	date TIMESTAMP default CURRENT_TIMESTAMP
+);
+
+
+create table res_category(
+	c_id INT auto_increment primary key,
+	c_name VARCHAR(100) unique not NULL
+);
+
+
+create table users(
+	u_id INT auto_increment primary key,
+	username VARCHAR(50) not null unique,
+	f_name VARCHAR(50) not null,
+	l_name VARCHAR(50) not null,
+	email VARCHAR(100) not null unique,
+	phone varchar(50) not null,
+	password VARBINARY(64),
+	address TEXT not null,
+	status INT default 1,
+	date TIMESTAMP default CURRENT_TIMESTAMP
+);
+
+
+create table users_orders(
+	o_id INT auto_increment primary key,
+	u_id INT,
+	title VARCHAR(100) not null,
+	quantity INT not null,
+	price DECIMAL not null,
+	status VARCHAR(50) default null,
+	date TIMESTAMP default CURRENT_TIMESTAMP,
+	foreign key(u_id) references users(u_id)
+);
+
+
+create table restaurant(
+	rs_id INT auto_increment primary key,
+	c_id INT,
+	title VARCHAR(100) not null,
+	email VARCHAR(100) not null unique,
+	phone varchar(50) not null,
+	url VARCHAR(100) not null,
+	o_hr VARCHAR(100),
+	o_days VARCHAR(100),
+	address TEXT not null,
+	image TEXT(255),
+	foreign key(c_id) references res_category(c_id)
+);
+
+
+
+create table dishes(
+	d_id INT auto_increment primary key,
+	rs_id INT,
+	title VARCHAR(100) not null,
+	slogan TEXT,
+	price DECIMAL(10,2),
+	image VARCHAR(255),
+	foreign key(rs_id) references restaurant(rs_id)
+);
+
+
+insert into admin (username, password, email, code) values ("kamal", "12345", "kamal@gmail.com", "21033");
+insert into admin (username, password, email, code) values ("Nimal", "25846", "Nimal@gmail.com", "21038");
+
+select*from admin;
+
+
