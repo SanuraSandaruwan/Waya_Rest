@@ -72,6 +72,7 @@ create table dishes(
 
 insert into admin (username, password, email, code) values ("kamal", "12345", "kamal@gmail.com", "21033");
 insert into admin (username, password, email, code) values ("Nimal", "25846", "Nimal@gmail.com", "21038");
+insert into admin (username, password, email, code) values ("Sumith", "25988", "Sumith@gmail.com", "21050");
 
 select*from admin;
 
